@@ -3,45 +3,33 @@ import Button from "react-bootstrap/Button";
 
 function ItemForm(props) {
     return (
-        <div>
+        <div className='flex-column-center'>
             <input
                 type='text'
                 maxLength='256'
-                id='new-list-input'
-                className='input input__lg'
-                name='text'
                 autoComplete='off'
                 placeholder='Add new item'
                 autoFocus
                 value={props.taskName}
                 onChange={(e) => props.setName(e.target.value)}
             />
-            {props.taskName === "" ? (
+            <div className='btn-group'>
                 <Button
                     variant='success'
                     size='md'
                     onClick={(e) => props.createTask(e)}
-                    disabled
+                    disabled={props.taskName === ""}
                 >
                     Create this item
                 </Button>
-            ) : (
                 <Button
-                    variant='success'
+                    variant='secondary'
                     size='md'
-                    onClick={(e) => props.createTask(e)}
+                    onClick={() => props.setClosed(true)}
                 >
-                    Create this item
+                    Close
                 </Button>
-            )}
-
-            <Button
-                variant='secondary'
-                size='md'
-                onClick={() => props.setClosed(true)}
-            >
-                Close
-            </Button>
+            </div>
         </div>
     );
 }

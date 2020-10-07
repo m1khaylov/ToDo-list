@@ -11,45 +11,33 @@ function Form(props) {
     };
 
     return (
-        <div>
-            <h2 className='label-wrapper'>Name your new list</h2>
+        <div className='form flex-column-center'>
+            <h2>Name your new list</h2>
             <input
                 type='text'
-                id='new-list-input'
-                className='input input__lg'
-                name='text'
                 autoComplete='off'
                 maxLength='256'
                 autoFocus
                 value={name}
                 onChange={(e) => setName(e.target.value)}
             />
-            {name === "" ? (
+            <div className='btn-group'>
                 <Button
                     variant='success'
                     size='md'
                     onClick={(e) => createList(e)}
-                    disabled
+                    disabled={name === ""}
                 >
                     Create this list
                 </Button>
-            ) : (
                 <Button
-                    variant='success'
+                    variant='secondary'
                     size='md'
-                    onClick={(e) => createList(e)}
+                    onClick={() => props.closeForm(false)}
                 >
-                    Create this list
+                    Cancel
                 </Button>
-            )}
-
-            <Button
-                variant='secondary'
-                size='md'
-                onClick={() => props.closeForm(false)}
-            >
-                Cancel
-            </Button>
+            </div>
         </div>
     );
 }

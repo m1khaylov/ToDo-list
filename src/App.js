@@ -24,15 +24,17 @@ function App() {
     };
 
     return (
-        <div className='todoapp'>
+        <div className='todoapp flex-column-center'>
             <h1>ToDo-list</h1>
-            <Button
-                variant='primary'
-                size='lg'
-                onClick={() => setShowForm(true)}
-            >
-                Create new list
-            </Button>
+            <div className='btn-center'>
+                <Button
+                    variant='primary'
+                    size='lg'
+                    onClick={() => setShowForm(true)}
+                >
+                    Create new list
+                </Button>
+            </div>
             {showForm && <Form addList={addList} closeForm={setShowForm} />}
             <ul>
                 {lists.map((list) => (

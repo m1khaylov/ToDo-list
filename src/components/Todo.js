@@ -18,57 +18,43 @@ function Todo(props) {
 
     const editingTemplate = (
         <form onSubmit={handleSubmit}>
-            <div className='form-group'>
-                <label htmlFor={props.id}>New name for {props.name}</label>
+            <label htmlFor={props.id}>{props.name}</label>
+            <div className='flex-column-center'>
                 <input
                     id={props.id}
-                    className='todo-text'
                     type='text'
                     maxLength='256'
                     autoComplete='off'
+                    placeholder='Type new name'
                     autoFocus
                     value={newName}
                     onChange={handleChange}
                 />
-            </div>
-            <div className='btn-group'>
-                <Button
-                    variant='success'
-                    size='sm'
-                    onClick={(e) => handleSubmit(e)}
-                >
-                    Save
-                </Button>
-                <Button
-                    variant='secondary'
-                    size='sm'
-                    onClick={() => setEditing(false)}
-                >
-                    Cancel
-                </Button>
 
-                {/* <button
-                    type='button'
-                    className='btn todo-cancel'
-                    onClick={() => setEditing(false)}
-                >
-                    Cancel
-                    <span className='visually-hidden'>
-                        renaming {props.name}
-                    </span>
-                </button> */}
-                {/* <button type='submit' className='btn btn__primary todo-edit'>
-                    Save
-                    <span className='visually-hidden'>
-                        new name for {props.name}
-                    </span>
-                </button> */}
+                <div className='btn-group'>
+                    <Button
+                        variant='success'
+                        size='sm'
+                        onClick={(e) => handleSubmit(e)}
+                        disabled={newName === ""}
+                    >
+                        Save
+                    </Button>
+                    <Button
+                        variant='secondary'
+                        size='sm'
+                        onClick={() => setEditing(false)}
+                    >
+                        Cancel
+                    </Button>
+                </div>
             </div>
         </form>
     );
+
     const viewTemplate = (
-        <div>
-            <div className='c-cb'>
+        <>
+            <div className='checkbox-group'>
                 <input
                     id={props.id}
                     type='checkbox'
@@ -77,7 +63,12 @@ function Todo(props) {
                     defaultChecked={props.completed}
                     onChange={() => props.toggleTaskCompleted(props.id)}
                 />
-                <label htmlFor={props.id}>{props.name}</label>
+                <label
+                    className={props.completed ? "faded" : ""}
+                    htmlFor={props.id}
+                >
+                    {props.name}
+                </label>
             </div>
             {!props.completed && (
                 <div className='btn-group'>
@@ -97,7 +88,7 @@ function Todo(props) {
                     </Button>
                 </div>
             )}
-        </div>
+        </>
     );
 
     return (

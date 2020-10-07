@@ -67,10 +67,10 @@ function List(props) {
                 handleClose={handleClose}
                 handleDelete={deleteList}
             ></ModalDialog>
-            <div className='todoapp'>
-                <div>
-                    <h2 className='label-wrapper'>{props.name}</h2>
-                    <ul>
+            <div>
+                <div className='flex-column-center mt-15'>
+                    <h2>{props.name}</h2>
+                    <ul className='tasks mb-15'>
                         {tasks
                             .filter((task) => !task.completed)
                             .map((task) => (
@@ -95,7 +95,7 @@ function List(props) {
                             addTask={addTask}
                         />
                     )}
-                    <ul>
+                    <ul className='tasks mb-15'>
                         {tasks
                             .filter((task) => task.completed)
                             .map((task) => (
@@ -112,7 +112,7 @@ function List(props) {
                     </ul>
                 </div>
                 {isListClosed && (
-                    <div>
+                    <div className='btn-group btn-list'>
                         <Button
                             variant='info'
                             size='md'

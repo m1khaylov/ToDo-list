@@ -1,22 +1,12 @@
-/* RESETS */
+/* Common styles */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
-*:focus {
-    outline: 3px dashed #228bec;
-    outline-offset: 0;
-}
-html {
-    font-family: "Roboto", sans-serif;
-    font-size: 48px;
-}
-h1,
-h2 {
-    margin-bottom: 0;
-}
+
 ul {
+    width: 50%;
     list-style: none;
     padding: 0;
 }
@@ -25,71 +15,95 @@ input {
     font-family: inherit;
     font-size: 100%;
     line-height: 1.15;
-    margin: 0;
+    margin: 5px;
+}
+
+label {
+    text-align: left;
 }
 
 body {
+    font-family: "Roboto", sans-serif;
+    font-size: 48px;
     width: 100%;
-    max-width: 68rem;
-    margin: 0 auto;
+    margin: auto;
     background-color: #f5f5f5;
     color: #4d4d4d;
 }
-@media screen and (min-width: 620px) {
-    body {
-        font-size: 1.9rem;
-        line-height: 1.31579;
-    }
+
+.form {
+    width: 50%;
 }
-/*END RESETS*/
-/* GLOBAL STYLES */
-.form-group > input[type="text"] {
-    display: inline-block;
-    margin-top: 0.4rem;
+
+.form > h2 {
+    margin: 15px 0;
+}
+
+.todoapp {
+    width: 800px;
+    background: #fff;
+    margin: 20px auto;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+        0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+.todoapp > h1 {
+    margin: 0;
+    margin-bottom: 1rem;
+}
+
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+/* Buttons styles */
+.btn-center {
+    display: flex;
+    justify-content: center;
 }
 
 .btn-group {
     display: flex;
     justify-content: space-between;
 }
-.btn-group > * {
-    flex: 1 1 49%;
-}
-.btn-group > * + * {
-    margin-left: 0.8rem;
-}
-.label-wrapper {
-    margin: 0;
-    flex: 0 0 100%;
-    text-align: center;
+.btn-group > button {
+    margin: 5px 0;
+    width: 45%;
 }
 
-/* END GLOBAL STYLES */
-.todoapp {
-    background: #fff;
-    margin: 2rem 0 4rem 0;
-    padding: 1rem;
-    position: relative;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
-        0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
+.btn-group > button:first-child {
+    margin-right: 5px;
 }
 
-.todoapp > h1 {
-    display: block;
-    max-width: 100%;
-    text-align: center;
-    margin: 0;
-    margin-bottom: 1rem;
+.btn-list {
+    width: 85%;
 }
 
-/* Todo item styles */
+/* ToDo component styles */
+.tasks {
+    width: 100%;
+}
+
 .todo {
+    width: 100%;
+    margin-top: 10px;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-.todo > * {
-    flex: 0 0 100%;
+    flex-direction: column;
+    align-items: flex-start;
 }
 .todo-text {
     width: 100%;
@@ -100,70 +114,28 @@ body {
 .todo-text:focus {
     box-shadow: inset 0 0 0 2px;
 }
-/* CHECKBOX STYLES */
-.c-cb {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    font-weight: 400;
-    font-size: 1.6rem;
-    line-height: 1.25;
-    display: block;
-    position: relative;
-    min-height: 44px;
-    padding-left: 40px;
-    clear: left;
+.todo > .btn-group {
+    width: 35%;
 }
-.c-cb > label::before,
-.c-cb > input[type="checkbox"] {
-    box-sizing: border-box;
-    top: -2px;
-    left: -2px;
-    width: 44px;
-    height: 44px;
+
+.todo input[type="text"] {
+    width: 380px;
 }
-.c-cb > input[type="checkbox"] {
-    -webkit-font-smoothing: antialiased;
-    cursor: pointer;
-    position: absolute;
-    z-index: 1;
-    margin: 0;
-    opacity: 0;
+
+.checkbox-group {
+    width: 100%;
+    display: flex;
 }
-.c-cb > label {
-    font-size: inherit;
-    font-family: inherit;
-    line-height: inherit;
-    display: inline-block;
-    margin-bottom: 0;
-    padding: 8px 15px 5px;
-    cursor: pointer;
-    touch-action: manipulation;
+
+.checkbox-group > input {
+    margin: 5px;
 }
-.c-cb > label::before {
-    content: "";
-    position: absolute;
-    border: 2px solid currentColor;
-    background: transparent;
+
+.checkbox-group > label {
+    font-size: 1rem;
+    word-break: break-word;
 }
-.c-cb > input[type="checkbox"]:focus + label::before {
-    border-width: 4px;
-    outline: 3px dashed #228bec;
-}
-.c-cb > label::after {
-    box-sizing: content-box;
-    content: "";
-    position: absolute;
-    top: 11px;
-    left: 9px;
-    width: 18px;
-    height: 7px;
-    transform: rotate(-45deg);
-    border: solid;
-    border-width: 0 0 5px 5px;
-    border-top-color: transparent;
-    opacity: 0;
-    background: transparent;
-}
-.c-cb > input[type="checkbox"]:checked + label::after {
-    opacity: 1;
+
+.faded {
+    color: #cccccc;
 }
